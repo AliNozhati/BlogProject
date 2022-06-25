@@ -1,0 +1,3 @@
+# BlogProject
+project django
+weblog
