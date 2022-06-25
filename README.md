@@ -1,3 +1,4 @@
 # BlogProject
 project django
+
 weblog
