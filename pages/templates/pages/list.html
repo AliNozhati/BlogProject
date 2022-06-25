@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if object_list %}
+    <div class="row">
+
+    {% for obj in object_list %}
+
+        {% block product %}{% endblock %}
+    
+    {% endfor %}
+
+    </div>
+
+{% else %}
+
+    not found
+
+{% endif %}
+
+<br><br><br><br>
+
+<div class="clearfix pager-botton">
+
+    {% if page_obj.has_previous %}
+        {% block page_previous %}{% endblock %}
+        <br>
+    {% endif %}   
+ 
+    {% if page_obj.has_next %}
+        {% block page_next %}{% endblock %}
+        <br>
+    {% endif %}   
+
+</div>
+
+{% endblock content %}

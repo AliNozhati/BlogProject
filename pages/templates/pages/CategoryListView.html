@@ -1,0 +1,27 @@
+{% extends 'pages/list.html' %}
+{% load static %}
+
+{% block title %}{{category.title}}{% endblock title %}
+{% block content_title %}دسته بندی:{{category.title}}{% endblock content_title %}
+
+{% block product %}
+
+    <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="portfolio-item">
+            <img class="img-fluid" src="{{ obj.thumbnail.url }}" alt="{{ obj.title }}" />
+            <div class="portfolio-caption">
+                <a href="{% url 'pages:detailArticle' obj.slug %}"><div class="portfolio-caption-heading">{{obj.title}}</div></a>
+                <a href="{% url 'pages:user' obj.author %}">#{{obj.author}}</a>
+                <div class="portfolio-caption-subheading text-muted">{{obj.description|striptags|truncatewords:"20"}}</div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block page_previous %}
+    <a class="btn btn-primary float-rigth ml-3" href="{% url 'pages:categoryList' category.slug page_obj.previous_page_number %}"> نمایش پست های قدیمی تر &larr;</a>      
+{% endblock %}
+{% block page_next %}
+    <a class="btn btn-primary float-rigth ml-3" href="{% url 'pages:categoryList' category.slug page_obj.next_page_number %}"> نمایش پست های جدید تر &rarr;</a>  
+{% endblock %}

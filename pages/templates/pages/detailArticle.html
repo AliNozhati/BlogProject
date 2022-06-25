@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{article.slug}}{% endblock title %}
+
+{% block content_title %}
+    {{article.title}}
+    {% if article.is_special %}
+        <span class="badge" style="background-color: rgb(231, 49, 49); font-size: 13px;">ویژه </span>
+    {% endif %}  
+{% endblock content_title %}
+
+{% block heading_title %} {{article.title}} {% endblock heading_title %}
+
+{% block content %}
+
+    {% if object.is_special %}
+        
+        {% if user.is_authenticated and user.is_special_user or user == object.author or user.is_superuser %}
+            <h1>{{article.id}}) {{article.title}}</h1>
+            <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" width="300" height="200">
+            <p>{{article.description|safe|linebreaks}}</p>
+            <small>{{article.publish}}</small>
+            <br>
+            <a href="#">#{{article.author}}</a>
+    
+        {% else %}
+            <p>{{article.description|safe|linebreaks}}</p>
+            <p class="alert alert-warning">این مقاله ویژه است و برای مشاهده آن باید <a href="#">کاربر ویژه</a> باشید.</p>
+        {% endif %}
+        
+    {% else %}
+        <h1>{{article.id}}) {{article.title}}</h1>
+        <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" width="300" height="200">
+        <p>{{article.description|safe|linebreaks}}</p>
+        <small>{{article.jpublish}}</small>
+        <br>
+        <a href="{% url 'pages:user' article.author %}">#{{article.author}}</a>
+    {% endif %}
+    
+{% endblock %}

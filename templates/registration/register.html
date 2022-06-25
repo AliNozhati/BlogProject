@@ -1,0 +1,83 @@
+{% extends 'registration/login_base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}register{% endblock title %}
+{% block content_title %}ثبت نام{% endblock content_title %}
+
+{% block content %}
+    <form class="login100-form validate-form" method="post">{% csrf_token %}
+                
+        <div class="wrap-input100 validate-input" data-validate = "نام کاربری را وارد کنید">
+            <!-- <span class="focus-input100" style="text-align: right;" data-placeholder="&#xf207;"></span> -->
+            {{form.username|attr:"class:input100"|attr:"placeholder:     نام کاربری"}}
+            <!-- &nbsp; -->
+            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+            {% if form.username.errors %}}
+                <div class="errors">
+                    {% for error in form.username.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="ایمیل را وارد کنید">
+            {{form.email|attr:"class:input100"|attr:"placeholder:      ایمیل"}}
+            <span class="focus-input100" data-placeholder="&#xf200;"></span>
+            {% if form.email.errors %}}
+                <div class="errors">
+                    {% for error in form.email.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="رمز را وارد کنید">
+            {{form.password1|attr:"class:input100"|attr:"placeholder:     رمز عبور"}}
+            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+            {% if form.password1.errors %}}
+                <div class="errors">
+                    {% for error in form.password1.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="رمز را تایید کنید">
+            {{form.password2|attr:"class:input100"|attr:"placeholder:     تایید رمز عبور"}}
+            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+            {% if form.password2.errors %}}
+                <div class="errors">
+                    {% for error in form.password2.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="contact100-form-checkbox">
+            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+            <label class="label-checkbox100" for="ckb1">
+                من را به خاطر بسپار
+            </label>
+        </div>
+
+        <div class="container-login100-form-btn">
+            <a href="#">
+                <button class="login100-form-btn">ورود</button>
+            </a>
+        </div>
+
+        <div class="text-center p-t-90">
+             حسابی دارید؟ 
+            <a class="txt1" href="{% url 'login' %}">
+                وارد
+            </a>
+            شوید.
+        </div>
+    </form>
+
+{% endblock content %}

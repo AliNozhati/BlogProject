@@ -1,0 +1,25 @@
+{% extends 'pages/list.html' %}
+{% load static %}
+
+{% block title %}list Category{% endblock title %}
+{% block content_title %}دسته بندی{% endblock content_title %}
+
+{% block product %}
+
+    <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="portfolio-item">
+            <div class="portfolio-caption">
+                <a href="{% url 'pages:categoryList' obj.slug %}"><div class="portfolio-caption-heading">{{obj.title}}</div></a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block page_previous %}
+    <a class="btn btn-primary float-rigth ml-3" href="{% url 'pages:category' page_obj.previous_page_number %}"> نمایش دسته بندی های قدیمی تر &larr;</a>  
+{% endblock %}
+
+{% block page_next %}
+    <a class="btn btn-primary float-rigth ml-3" href="{% url 'pages:category' page_obj.next_page_number %}"> نمایش دسته بندی های جدید تر &rarr;</a>  
+{% endblock %}

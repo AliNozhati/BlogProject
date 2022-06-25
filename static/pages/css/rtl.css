@@ -1,0 +1,9 @@
+body {
+    direction: rtl;
+    text-align: right;
+}
+
+ul.navbar-nav{
+    margin-left: initial !important;
+    margin-right: auto;
+}

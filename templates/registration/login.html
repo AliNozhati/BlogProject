@@ -1,0 +1,61 @@
+{% extends 'registration/login_base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}login{% endblock title %}
+{% block content_title %}ورود{% endblock content_title %}
+
+{% block content %}
+    <form class="login100-form validate-form" method="post">{% csrf_token %}
+                
+        <div class="wrap-input100 validate-input" data-validate = "نام کاربری را وارد کنید">
+            <!-- <span class="focus-input100" style="text-align: right;" data-placeholder="&#xf207;"></span> -->
+            {{form.username|attr:"class:input100"|attr:"placeholder:     نام کاربری"}}
+            <!-- &nbsp; -->
+            <span class="focus-input100" data-placeholder="&#xf207;"></span>
+            {% if form.username.errors %}}
+                <div class="errors">
+                    {% for error in form.username.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="رمز را وارد کنید">
+            {{form.password|attr:"class:input100"|attr:"placeholder:     رمز عبور"}}
+            <span class="focus-input100" data-placeholder="&#xf191;"></span>
+            {% if form.password.errors %}}
+                <div class="errors">
+                    {% for error in form.password.errors %}
+                        <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="contact100-form-checkbox">
+            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+            <label class="label-checkbox100" for="ckb1">
+                من را به خاطر بسپار
+            </label>
+        </div>
+
+        <div class="container-login100-form-btn">
+            <a href="#">
+                <button class="login100-form-btn">ورود</button>
+            </a>
+        </div>
+
+        <div class="text-center p-t-40">
+            <a class="txt1" href="{% url 'password_reset' %}">
+                رمز را فراموش کردید؟
+            </a>
+            <br>
+            <a class="txt1" href="{% url 'register' %}">
+                ثبت نام کنید.
+            </a>
+        </div>
+    </form>
+
+{% endblock content %}
